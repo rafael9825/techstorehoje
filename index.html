@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TechStore Hoje</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header__row">
+      <a class="logo" href="/">TechStore</a>
+      <nav class="nav">
+        <a href="#produtos">Produtos</a>
+        <a href="#contato">Contato</a>
+        <!-- único contador -->
+        <button class="cart" id="open-cart" aria-label="Carrinho">
+          🛒 <span id="cart-count">0</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Tecnologia que cabe no seu dia a dia</h1>
+      <p class="muito-mais">Ofertas em periféricos, áudio, armazenamento e muito mais.</p>
+    </div>
+  </section>
+
+  <!-- TOOLBAR estilo Amazon -->
+<div class="toolbar container">
+  <div class="searchbar">
+    <select id="cat" class="searchbar__cat" aria-label="Filtrar por categoria">
+      <option value="all">Todos</option>
+      <option value="computadores">Computadores</option>
+      <option value="periféricos">Periféricos</option>
+      <option value="áudio">Áudio</option>
+      <option value="armazenamento">Armazenamento</option>
+      <option value="acessórios">Acessórios</option>
+    </select>
+    <input id="q" class="searchbar__input" type="search" placeholder="Buscar produtos..." aria-label="Buscar produtos">
+    <button class="searchbar__btn" aria-label="Pesquisar">🔍</button>
+  </div>
+  <select id="sort" class="sort" aria-label="Ordenar por preço">
+    <option value="none">Ordenar</option>
+    <option value="asc">Preço: menor → maior</option>
+    <option value="desc">Preço: maior → menor</option>
+  </select>
+</div>
+
+
+  <p id="empty" hidden></p>
+
+  <section id="produtos">
+    <div class="container">
+      <h2>Produtos em Destaque</h2>
+      <ul id="lista-produtos" class="lista-produtos"></ul>
+    </div>
+  </section>
+
+  <!-- Drawer do carrinho -->
+  <aside id="cart-drawer" class="drawer" aria-hidden="true">
+    <div class="drawer__panel">
+      <div class="drawer__head">
+        <h3>Seu carrinho</h3>
+        <button id="close-cart" aria-label="Fechar">✕</button>
+      </div>
+      <ul id="cart-items" class="cart-list"></ul>
+      <div class="drawer__foot">
+        <div class="total">Total: <strong id="cart-total">R$ 0,00</strong></div>
+        <div class="actions">
+          <button id="clear-cart" class="ghost">Esvaziar</button>
+          <button class="primary" disabled>Finalizar compra</button>
+        </div>
+      </div>
+    </div>
+    <div class="drawer__overlay" id="cart-overlay"></div>
+  </aside>
+
+  <footer class="footer" id="contato">
+    <div class="container footer__grid">
+      <div>
+        <strong>TechStore</strong><br>
+        <small>Feita com HTML, CSS, JavaScript e inteligencia Atificial.</small>
+      </div>
+      <div>
+        <strong>Atendimento</strong><br>
+        <small>contato@techstore.dev</small>
+      </div>
+      <div>
+        <strong>Redes</strong><br>
+        <small>@techstore</small>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Helpers primeiro -->
+  <script src="js/utils/helpers.js"></script>
+  <!-- Main depois -->
+  <script src="js/main.js"></script>
+</body>
+</html>
+

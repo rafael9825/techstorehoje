@@ -1,0 +1,453 @@
+/* =========================================================
+   01) Design Tokens
+   ========================================================= */
+:root {
+    --bg: #f5f7fb;
+    --surface: #ffffff;
+    --text: #1f2937;
+    --muted: #6b7280;
+
+    --primary: #2563eb;
+    /* azul */
+    --primary-2: #1e40af;
+    /* azul escuro */
+    --accent: #10b981;
+    /* verde */
+
+    --ring: rgba(37, 99, 235, .25);
+    --radius: 12px;
+
+    --border: #e5e7eb;
+    --shadow-sm: 0 1px 0 rgba(0, 0, 0, .02);
+    --shadow-md: 0 10px 24px rgba(0, 0, 0, .06);
+}
+
+/* =========================================================
+   02) Reset & Base
+   ========================================================= */
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Inter, Arial, sans-serif;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.container {
+    max-width: 1100px;
+    margin-inline: auto;
+    padding: 0 16px;
+}
+
+/* =========================================================
+   03) Header
+   ========================================================= */
+.header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header__row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-height: 64px;
+}
+
+.logo {
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: var(--primary);
+}
+
+.nav {
+    margin-left: auto;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.nav a {
+    opacity: .9;
+}
+
+.nav a:hover {
+    opacity: 1;
+}
+
+/* botão carrinho do header */
+.cart {
+    border: 1px solid var(--primary);
+    background: #eef2ff;
+    padding: 8px 12px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background .15s ease;
+}
+
+.cart:hover {
+    background: #e0e7ff;
+}
+
+#cart-count {
+    font-weight: 700;
+}
+
+/* =========================================================
+   04) Hero (degradê)
+   ========================================================= */
+.hero {
+    padding: 40px 0 20px;
+    text-align: center;
+    color: #fff;
+    background: linear-gradient(176deg,
+            rgba(42, 123, 155, .91) 0%,
+            rgba(87, 199, 133, 1) 50%,
+            rgba(237, 221, 83, 1) 100%);
+}
+
+.hero h1 {
+    margin: 0 0 8px;
+    font-size: clamp(1.4rem, 2vw, 2rem);
+    color: #e5e7eb;
+}
+
+.hero .muito-mais {
+    margin: 0;
+    color: #f0f0f0;
+    font-size: 1.1rem;
+}
+
+/* =========================================================
+   05) Toolbar – estilo Amazon
+   ========================================================= */
+.toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding: 12px 0;
+}
+
+/* barra: [select Todos] [input] [btn lupa] */
+.searchbar {
+    display: flex;
+    align-items: stretch;
+    width: min(680px, 100%);
+    background: #fff;
+    border: 1px solid #d0d7de;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .04);
+}
+
+.searchbar__cat {
+    border: 0;
+    background: #f3f4f6;
+    padding: 0 10px;
+    font-size: .95rem;
+    min-width: 90px;
+    /* compacto */
+    max-width: 76px;
+    outline: none;
+}
+
+.searchbar__input {
+    flex: 1;
+    border: 0;
+    padding: 10px 12px;
+    font-size: 1rem;
+    outline: none;
+}
+
+.searchbar__btn {
+    border: 0;
+    background: var(--primary);
+    color: #fff;
+    padding: 0 14px;
+    cursor: pointer;
+}
+
+.searchbar__btn:hover {
+    filter: brightness(.95);
+}
+
+/* ordenar */
+.sort {
+    min-width: 170px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid #d0d7de;
+    background: #fff;
+}
+
+/* focus states */
+.searchbar__input:focus,
+.searchbar__cat:focus,
+.sort:focus {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+}
+
+@media (max-width:600px) {
+    .searchbar {
+        width: 100%;
+    }
+
+    .sort {
+        flex: 1 1 160px;
+    }
+}
+
+/* =========================================================
+   06) Lista de Produtos
+   ========================================================= */
+#produtos {
+    margin-top: 12px;
+}
+
+#produtos h2 {
+    margin: 16px 0;
+}
+
+.lista-produtos {
+    list-style: none;
+    margin: 24px 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.produto {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 12px;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: .2s transform, .2s box-shadow;
+}
+
+.produto:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.produto img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.produto h3 {
+    font-size: 1.05rem;
+    margin: 6px 0;
+}
+
+.produto p {
+    color: var(--muted);
+    margin: 6px 0 12px;
+}
+
+/* botão adicionar */
+.btn-add {
+    padding: 8px 10px;
+    border: 1px solid var(--primary);
+    background: #eef2ff;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background .15s ease;
+}
+
+.btn-add:hover {
+    background: #e0e7ff;
+}
+
+/* estado vazio */
+#empty {
+    margin-top: 8px;
+    color: #666;
+}
+
+/* =========================================================
+   07) Drawer do Carrinho (sem blur)
+   ========================================================= */
+.drawer {
+    position: fixed;
+    inset: 0;
+    display: none;
+}
+
+.drawer.open {
+    display: block;
+}
+
+.drawer__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, .35);
+    /* escurece somente */
+    z-index: 10;
+}
+
+.drawer__panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: min(380px, 95vw);
+    background: var(--surface);
+    box-shadow: -12px 0 32px rgba(0, 0, 0, .15);
+    display: flex;
+    flex-direction: column;
+    z-index: 20;
+}
+
+.drawer__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+.cart-list {
+    list-style: none;
+    margin: 0;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 60vh;
+    overflow: auto;
+}
+
+.cart-item {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.cart-item img {
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.cart-item h4 {
+    margin: 0;
+    font-size: .95rem;
+}
+
+.cart-item .price {
+    color: var(--muted);
+    font-size: .9rem;
+}
+
+.qty {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: auto;
+}
+
+.qty button {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: #f8fafc;
+    cursor: pointer;
+}
+
+.drawer__foot {
+    margin-top: auto;
+    padding: 16px;
+    border-top: 1px solid var(--border);
+}
+
+.actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+button.primary {
+    background: var(--primary);
+    color: #fff;
+    border: 1px solid var(--primary);
+    border-radius: 10px;
+    padding: 10px 12px;
+    cursor: pointer;
+}
+
+button.primary:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+}
+
+button.ghost {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 12px;
+    cursor: pointer;
+}
+
+/* =========================================================
+   08) Footer
+   ========================================================= */
+.footer {
+    margin-top: 40px;
+    background: #0b1220;
+    color: #cbd5e1;
+}
+
+.footer__grid {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    padding: 24px 16px;
+}
+
+.footer strong {
+    color: #fff;
+}
+
+/* 📌 Imagens dos produtos (grid principal) */
+.produto img {
+  aspect-ratio: 4 / 3;   /* mantém a proporção */
+  object-fit: cover;     /* corta para preencher sem distorcer */
+}
+
+/* 📌 Imagens do carrinho */
+.cart-item img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
